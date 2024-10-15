@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasty Treats - Custom Cake Order</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Cake Order Form</h1>
+        <form action="#" method="post" id="cakeOrderForm">
+
+            <label for="flavor">Flavor:</label>
+            <div class="options-container">
+                <label>
+                    <input type="checkbox" name="flavor" value="vanilla" data-price="140">
+                    <img src="a.jpg" alt="Vanilla Cake">
+                    Vanilla ($140)
+                </label>
+                <label>
+                    <input type="checkbox" name="flavor" value="red-velvet" data-price="150">
+                    <img src="b.jpg" alt="Red Velvet Cake">
+                    Red Velvet ($150)
+                </label>
+                <label>
+                    <input type="checkbox" name="flavor" value="chocolate" data-price="450">
+                    <img src="c.jpg" alt="Chocolate Cake">
+                    Chocolate ($450)
+                </label>
+                <label>
+                    <input type="checkbox" name="flavor" value="strawberry" data-price="600">
+                    <img src="d.jpg" alt="Strawberry Cake">
+                    Strawberry ($600)
+                </label>
+                <label>
+                    <input type="checkbox" name="flavor" value="lemon" data-price="899">
+                    <img src="e.jpg" alt="Lemon Cake">
+                    Lemon ($899)
+                </label>
+                <label>
+                    <input type="checkbox" name="flavor" value="blueberry" data-price="655">
+                    <img src="f.jpg" alt="Blueberry Cake">
+                    Blueberry ($655)
+                </label>
+            </div>
+
+            <label for="size">Size:</label>
+            <div class="options-container">
+                <label>
+                    <input type="checkbox" name="size" value="6-inch" data-price="90">
+                    <span>6 inch ($90)</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="size" value="8-inch" data-price="150">
+                    <span>8 inch ($150)</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="size" value="10-inch" data-price="1760">
+                    <span>10 inch ($1760)</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="size" value="12-inch" data-price="2250">
+                    <span>12 inch ($2250)</span>
+                </label>
+            </div>
+
+            <label for="design">Design:</label>
+            <div class="options-container">
+                <label>
+                    <input type="checkbox" name="design" value="Minimalist" data-price="1150">
+                    <img src="1.jpg" alt="Minimalist Design">
+                    Minimalist ($1150)
+                </label>
+                <label>
+                    <input type="checkbox" name="design" value="Vintage" data-price="1370">
+                    <img src="2.jpg" alt="Vintage Design">
+                    Vintage ($1370)
+                </label>
+                <label>
+                    <input type="checkbox" name="design" value="Naked" data-price="1660">
+                    <img src="3.jpg" alt="Naked Design">
+                    Naked ($1660)
+                </label>
+                <label>
+                    <input type="checkbox" name="design" value="One tier" data-price="2050">
+                    <img src="4.jpg" alt="One Tier Design">
+                    One tier ($2050)
+                </label>
+                <label>
+                    <input type="checkbox" name="design" value="Two tier" data-price="2200">
+                    <img src="5.jpg" alt="Two Tier Design">
+                    Two tier ($2200)
+                </label>
+                <label>
+                    <input type="checkbox" name="design" value="Three tier" data-price="3100">
+                    <img src="6.jpg" alt="Three Tier Design">
+                    Three tier ($3100)
+                </label>
+                <label>
+                    <input type="checkbox" name="design" value="Round" data-price="2000">
+                    <img src="7.jpg" alt="Round Design">
+                    Round ($2000)
+                </label>
+                <label>
+                    <input type="checkbox" name="design" value="Heart" data-price="2000">
+                    <img src="8.jpg" alt="Heart Design">
+                    Heart ($2000)
+
+                </label>
+                <label>
+                    <input type="checkbox" name="design" value="Symbol" data-price="1900">
+                    <img src="9.jpg" alt="Symbol Design">
+                    Symbol ($1900)
+                </label>
+            </div>
+
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="notes">Additional Notes (Optional):</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Describe your custom design (optional)"></textarea>
+
+            <div id="totalPrice">Total Price: $0</div>
+            <button type="submit">Submit Order</button>
+
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('cakeOrderForm');
+        const totalPriceDiv = document.getElementById('totalPrice');
+
+        function calculateTotal() {
+            const selectedFlavors = form.querySelectorAll('input[name="flavor"]:checked');
+            const selectedSizes = form.querySelectorAll('input[name="size"]:checked');
+            const selectedDesigns = form.querySelectorAll('input[name="design"]:checked');
+
+            let total = 0;
+
+            selectedFlavors.forEach(flavor => {
+                total += parseFloat(flavor.dataset.price);
+            });
+
+            selectedSizes.forEach(size => {
+                total += parseFloat(size.dataset.price);
+            });
+
+            selectedDesigns.forEach(design => {
+                total += parseFloat(design.dataset.price);
+            });
+
+            totalPriceDiv.textContent = `Total Price: $${total.toFixed(2)}`;
+        }
+
+        form.addEventListener('change', calculateTotal);
+    </script>
+</body>
+</html>
